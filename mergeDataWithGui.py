@@ -1,28 +1,27 @@
 from serialClass import *
 from Styling import *
 
-#todo in this file just youmna need to fill #3 in merge fucntion
+#todo in this file just youmna need to fill #1 in merge fucntion
 class mergeDataWithGui ():
-
     def __init__(self):
            #constructor #1)object from styling.py (stylingObject)->youmna
-                       #2)object from serial.func.py (serialObject) ->omar
+                        #2)object from serial.func.py (serialObject) ->omar
+                        #3)connect the the recieve button with its handler
+                        
             self.serialObject=serialClass()
             self.StylingObject=Styling()
-                
-        
-        
-        
-        #create func merge 
-        # 1)serialobect.receiveserial()  ->done
-        # 2)serialobject.manager()       ->done
-        # 3)styulingoBJECT.LINEDIT1.SETDATA(Serialobject.sola1) do this to all data u want to show in gui  ->being done
-        
+            self.StylingObject.Receiving_Connect_pushButton.clicked.connect(self.ReceiveHandler)
     def merge(self):
-            #1)
-            self.serialObject.recieve_serial()
-            #2)
-            self.serialObject.Manager_ofRecievedData()
-            #3)#here merge data as the next line an example  --> youmna do this             #note youmna u have to replace line edit with qlabel because line Edit can be changed by the user in gui
-            self.StylingObject.SolarStatus1_LineEdit.setText(str(self.serialObject.solar1))
+                                 #1)#here merge data as the next line an example  --> youmna do this 
+            #first get the data from gui (baudrate ,comport)
+            self.serialObject.baudRateRx=int(self.StylingObject.BaudRateRX_TextEdit.currentText())
+            self.serialObject.comPortRx=self.StylingObject.ReceivingComPort_comboBox.currentText()
+            # put the data in gui ----->>youmna #todo
+            self.StylingObject.ReceivingWindow_textEdit.append(self.serialObject.serial_data)
+            self.StylingObject.BatteryVolt_LineEdit.setText(str(self.serialObject.voltage))
     
+    def ReceiveHandler(self):
+           self.merge()
+           self.serialObject.recieve_serial()
+           self.serialObject.Manager_ofRecievedData()
+           self.merge()
