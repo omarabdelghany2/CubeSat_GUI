@@ -15,7 +15,7 @@ class Ui_MainWindow(object):
         #list of Ports for RX & TX combobox
         Ports = ["COM1","COM2","COM3"]
         #list of Values of Baud Rate
-        values = [1200, 2400, 4800, 9600, 10417, 19200]
+        values = [1200, 2400, 4800, 9600, 19200, 115200, 400000]
         
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1200, 905)
@@ -216,6 +216,7 @@ class Ui_MainWindow(object):
         self.ReceivingWindow_textEdit = QtWidgets.QTextEdit(parent=self.centralwidget)
         self.ReceivingWindow_textEdit.setMaximumSize(QtCore.QSize(250, 200))
         self.ReceivingWindow_textEdit.setObjectName("ReceivingWindow_textEdit")
+        self.ReceivingWindow_textEdit.setReadOnly(True)
         self.gridLayout.addWidget(self.ReceivingWindow_textEdit, 6, 1, 1, 1)
         self.ReceivingTerminal_label = QtWidgets.QLabel(parent=self.centralwidget)
         font = QtGui.QFont()
