@@ -2,7 +2,7 @@
 import serial
 
 class serialClass():
-    #variables used for recieving and transimitting over serial
+    #variables used for recieving and transimitting over serial   --->>MAINTAB
     baudRateTx=1
     baudRateRx=0
     comPortTx=""
@@ -31,11 +31,22 @@ class serialClass():
 
     serial_data=""
 
+#-----------------------------------------------------------------------
+    #varaibles of the ebs tab                                       -->>>EBSTAB
+
+
+    MotorX=0
+    MotorY=0
+    MotorZ=0
+
+    BatteryHeater=0
+    EbsTemp=0
 
     def recieve_serial(self):
         try:
             # Replace 'COMx' with your actual serial port (e.g., COM3 on Windows, /dev/ttyUSB0 on Linux)
-            with serial.Serial(self.comPortRx, self.baudRateRx, timeout=10) as serial_port:
+            #with serial.Serial(self.comPortRx, self.baudRateRx, timeout=10) as serial_port:
+            with serial.Serial('/dev/cu.usbserial-130', self.baudRateRx, timeout=20) as serial_port:    
                 # Read one line from the serial port
                 self.serial_data = serial_port.readline().decode('utf-8').strip()
                 # Print the received data
@@ -49,6 +60,7 @@ class serialClass():
         self.received_data = self.serial_data.split(',')
 
         # Assigning values to variables
+        #-->>MainTab varaibles
         Time = int(self.received_data[0])
         voltage = float(self.received_data[1])
         current = int(self.received_data[2])
@@ -63,6 +75,14 @@ class serialClass():
         solar3 = int(self.received_data[11])
         solar4 = int(self.received_data[12])
         comm_antennas = int(self.received_data[13])
+        #-->EBS VARAIBLES
+        BatteryHeater=int(self.received_data[14])
+        EbsTemp=int(self.received_data[15])
+        MotorX=int(self.received_data[38])
+        MotorY=int(self.received_data[39])
+        MotorZ=int(self.received_data[40])
+
+
 
         # Assigning values to instance variables
         self.Time = Time
@@ -79,8 +99,12 @@ class serialClass():
         self.solar3 = solar3
         self.solar4 = solar4
         self.comm_antennas = comm_antennas
-
-
+        #-->EBS
+        self.BatteryHeater=BatteryHeater
+        self.EbsTemp=EbsTemp
+        self.MotorX=MotorX
+        self.MotorY=MotorY
+        self.MotorZ=MotorZ
 
 
 

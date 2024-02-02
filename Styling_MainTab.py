@@ -2,7 +2,7 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel,  QTabWidget, QWid
 from PyQt6.QtGui import QPixmap
 from MainTab import Ui_MainWindow
 
-class Styling(QMainWindow, Ui_MainWindow):
+class Styling_MainTab(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)

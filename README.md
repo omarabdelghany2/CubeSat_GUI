@@ -1,2 +1,2 @@
 # CubeSat_GUI
-# CubeSat_GUI
+# u hAVE TO INSTALL PYSERIAL  AND PYQT6
