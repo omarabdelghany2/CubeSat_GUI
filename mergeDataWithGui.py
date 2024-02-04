@@ -15,6 +15,7 @@ class mergeDataWithGui ():
             self.Styling_MainTab_Object=Styling_MainTab()
             self.Styling_EpsTab_Object=Styling_EpsTab()
             self.Styling_AdcsTab_Object=Styling_AdcsTab()
+            self.Styling_CommTab_Object=Styling_CommTab()
     
 
             self.Styling_MainTab_Object.Receiving_Connect_pushButton.clicked.connect(self.ReceiveHandler)
@@ -240,7 +241,23 @@ class mergeDataWithGui ():
             self.Styling_AdcsTab_Object.lineEdit_Longitude.setText(str(self.serialObject.Longitude))
             self.Styling_AdcsTab_Object.lineEdit_Latitude.setText(str(self.serialObject.Latitude))
             self.Styling_AdcsTab_Object.lineEdit_Altitude.setText(str(self.serialObject.Altitude))                 
-    
+#-----------------------------------------------------------------------
+#varaibles of the COMM tab                    -->>>COMM TAB
+            
+            self.Styling_CommTab_Object.lineEdit_TxBand.setText(str(self.serialObject.PowerTx))
+            self.Styling_CommTab_Object.lineEdit_RxP.setText(str(self.serialObject.PowerRx))
+            self.Styling_CommTab_Object.lineEdit_Mod.setText(str(self.serialObject.ModulationScheme)) 
+            self.Styling_CommTab_Object.lineEdit_Freq.setText(str(self.serialObject.Freq))
+            self.Styling_CommTab_Object.lineEdit_FreqBand.setText(str(self.serialObject.FreqBand))
+            self.Styling_CommTab_Object.lineEdit_Rb.setText(str(self.serialObject.DataRate))
+
+            if self.serialObject.COMM_Status == 1:
+                   self.Styling_CommTab_Object.lineEdit_Status.setText(str("ON"))
+                   self.Styling_CommTab_Object.lineEdit_Status.setStyleSheet("background-color: green;")
+            else:
+                   self.Styling_CommTab_Object.lineEdit_Status.setText(str("OFF"))
+                   self.Styling_CommTab_Object.lineEdit_Status.setStyleSheet("background-color: red;")    
+
     def ReceiveHandler(self):
            self.merge()
            self.serialObject.recieve_serial()

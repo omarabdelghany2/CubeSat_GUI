@@ -4,6 +4,8 @@ from PyQt6.QtGui import QFont, QColor, QPixmap
 from MainTab import Ui1_Form
 from AdcsTab import Ui3_Form
 from EpsTab import Ui2_Form
+from COMM_Tab import Ui4_Form
+
 
 class Styling_EpsTab(QWidget,Ui2_Form):
     def __init__(self):
@@ -19,4 +21,10 @@ class Styling_AdcsTab(QWidget,Ui3_Form):
 class Styling_MainTab(QWidget,Ui1_Form):
     def __init__(self):
         super(Styling_MainTab, self).__init__()
+        self.setupUi(self)
+
+
+class Styling_CommTab(QWidget,Ui4_Form):
+    def __init__(self):
+        super(Styling_CommTab, self).__init__()
         self.setupUi(self)

@@ -67,12 +67,24 @@ class serialClass():
     Latitude = 0.0
     Altitude = 0
 
+    #-----------------------------------------------------------------------
+    #varaibles of the COMM tab                                       -->>>COMM TAB
+
+    PowerTx = 0
+    PowerRx = 0
+    COMM_Status = 0
+    ModulationScheme = 0
+    Freq = 0
+    FreqBand = 0
+    DataRate = 0
+
+    
 
     def recieve_serial(self):
         try:
             # Replace 'COMx' with your actual serial port (e.g., COM3 on Windows, /dev/ttyUSB0 on Linux)
-            #with serial.Serial('/dev/cu.usbserial-120', self.baudRateRx, timeout=10) as serial_port:
-            with serial.Serial(self.comPortRx, self.baudRateRx, timeout=10) as serial_port:    
+            with serial.Serial('/dev/cu.usbserial-1120', self.baudRateRx, timeout=20) as serial_port:
+            #with serial.Serial(self.comPortRx, self.baudRateRx, timeout=10) as serial_port:    
                 # Read one line from the serial port
                 self.serial_data = serial_port.readline().decode('utf-8').strip()
                 # Print the received data
@@ -137,6 +149,15 @@ class serialClass():
         MotorY=int(self.received_data[39])
         MotorZ=int(self.received_data[40])
 
+        #-->COMM VARAIBLES
+        PowerTx =int(self.received_data[41])
+        PowerRx =int(self.received_data[42])
+        COMM_Status =int(self.received_data[43])
+        ModulationScheme =str(self.received_data[44])
+        Freq =int(self.received_data[45])
+        FreqBand =int(self.received_data[46])
+        DataRate =int(self.received_data[47])
+
 
         # Assigning values to instance variables
         self.Time = Time
@@ -184,6 +205,15 @@ class serialClass():
         self.MotorX=MotorX
         self.MotorY=MotorY
         self.MotorZ=MotorZ
+
+
+        self.PowerTx = PowerTx
+        self.PowerRx = PowerRx
+        self.COMM_Status = COMM_Status
+        self.ModulationScheme = ModulationScheme
+        self.Freq = Freq
+        self.FreqBand = FreqBand
+        self.DataRate = DataRate
 
 
 
