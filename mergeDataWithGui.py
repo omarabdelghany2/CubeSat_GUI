@@ -1,6 +1,8 @@
 from serialClass import *
-from Styling import *
-
+from Styling_MainTab import Styling_MainTab
+from Styling_EpsTab import Styling_EpsTab
+from Styling_AdcsTab import Styling_AdcsTab
+from Styling_CommTab import Styling_CommTab
 from datetime import datetime
 
 
@@ -46,6 +48,14 @@ class mergeDataWithGui ():
             self.Styling_MainTab_Object.Current_LineEdit_3.setText(str(self.serialObject.current))
             self.Styling_MainTab_Object.Current33_LineEdit_3.setText(str(self.serialObject.current3_3))
             self.Styling_MainTab_Object.Current5_LineEdit_3.setText(str(self.serialObject.current_5))
+
+            ##adding the oreintatio to 3dMODEL_______________________________________
+           
+            self.Styling_MainTab_Object.Model.yawangle=self.serialObject.GyroZ
+            self.Styling_MainTab_Object.Model.pitchangle=self.serialObject.GyroX ##we have aproplem here try to detect
+            self.Styling_MainTab_Object.Model.rollangle=self.serialObject.GyroY
+            self.Styling_MainTab_Object.Model.update()
+            
 
             # Set the mode and color based on the value
             if self.serialObject.OBC == 1:
@@ -240,9 +250,12 @@ class mergeDataWithGui ():
 
             self.Styling_AdcsTab_Object.lineEdit_Longitude.setText(str(self.serialObject.Longitude))
             self.Styling_AdcsTab_Object.lineEdit_Latitude.setText(str(self.serialObject.Latitude))
-            self.Styling_AdcsTab_Object.lineEdit_Altitude.setText(str(self.serialObject.Altitude))                 
+            self.Styling_AdcsTab_Object.lineEdit_Altitude.setText(str(self.serialObject.Altitude))  
+
+
+
 #-----------------------------------------------------------------------
-#varaibles of the COMM tab                    -->>>COMM TAB
+              #varaibles of the COMM tab                    -->>>COMM TAB
             
             self.Styling_CommTab_Object.lineEdit_TxBand.setText(str(self.serialObject.PowerTx))
             self.Styling_CommTab_Object.lineEdit_RxP.setText(str(self.serialObject.PowerRx))
@@ -258,6 +271,8 @@ class mergeDataWithGui ():
                    self.Styling_CommTab_Object.lineEdit_Status.setText(str("OFF"))
                    self.Styling_CommTab_Object.lineEdit_Status.setStyleSheet("background-color: red;")    
 
+
+    
     def ReceiveHandler(self):
            self.merge()
            self.serialObject.recieve_serial()

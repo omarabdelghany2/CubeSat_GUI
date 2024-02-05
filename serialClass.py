@@ -67,7 +67,7 @@ class serialClass():
     Latitude = 0.0
     Altitude = 0
 
-    #-----------------------------------------------------------------------
+#-----------------------------------------------------------------------
     #varaibles of the COMM tab                                       -->>>COMM TAB
 
     PowerTx = 0
@@ -78,13 +78,22 @@ class serialClass():
     FreqBand = 0
     DataRate = 0
 
-    
+
 
     def recieve_serial(self):
         try:
             # Replace 'COMx' with your actual serial port (e.g., COM3 on Windows, /dev/ttyUSB0 on Linux)
-            with serial.Serial('/dev/cu.usbserial-1120', self.baudRateRx, timeout=20) as serial_port:
-            #with serial.Serial(self.comPortRx, self.baudRateRx, timeout=10) as serial_port:    
+            with serial.Serial(self.comPortRx, self.baudRateRx, timeout=20) as serial_port:
+                # Read one line from the serial port
+                self.serial_data = serial_port.readline().decode('utf-8').strip()
+                # Print the received data
+                print("Received: {}".format(self.serial_data))
+
+                # Read one line from the serial port
+                self.serial_data = serial_port.readline().decode('utf-8').strip()
+                # Print the received data
+                print("Received: {}".format(self.serial_data))
+                
                 # Read one line from the serial port
                 self.serial_data = serial_port.readline().decode('utf-8').strip()
                 # Print the received data

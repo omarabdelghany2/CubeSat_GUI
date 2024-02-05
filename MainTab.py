@@ -7,9 +7,10 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
+from model import GLWidget
 
 
-class Ui1_Form(object):
+class Ui_Form(object):
     def setupUi(self, Form):
 
         #list of Ports for RX & TX combobox
@@ -38,10 +39,12 @@ class Ui1_Form(object):
         self.Position_textEdit.setMaximumSize(QtCore.QSize(16777215, 600))
         self.Position_textEdit.setObjectName("Position_textEdit")
         self.gridLayout.addWidget(self.Position_textEdit, 0, 2, 6, 1)
-        self.Model_textEdit = QtWidgets.QTextEdit(parent=Form)
-        self.Model_textEdit.setMaximumSize(QtCore.QSize(16777215, 600))
-        self.Model_textEdit.setObjectName("Model_textEdit")
-        self.gridLayout.addWidget(self.Model_textEdit, 0, 3, 6, 1)
+        ##############
+        self.Model=GLWidget()
+        self.Model.setMaximumSize(QtCore.QSize(16777215, 600))
+        self.Model.setObjectName("Model_3D")
+        self.gridLayout.addWidget(self.Model, 0, 3, 6, 1)
+        #############
         self.SendingComPort_label = QtWidgets.QLabel(parent=Form)
         font = QtGui.QFont()
         font.setPointSize(12)
@@ -282,12 +285,6 @@ class Ui1_Form(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt;\">Position</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt;\"><br /></p></body></html>"))
-        self.Model_textEdit.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:18pt;\">3D Model</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt;\"><br /></p></body></html>"))
         self.SendingComPort_label.setText(_translate("Form", "Send COM PORT"))
         self.Sending_Connect_pushButton.setText(_translate("Form", "Connect"))
