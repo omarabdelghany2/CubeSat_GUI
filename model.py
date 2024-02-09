@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtCore import Qt, QBuffer
+from PyQt6.QtCore import Qt, QBuffer
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from PyQt6.QtOpenGLWidgets import QOpenGLWidget
 from PyQt6.QtGui import QImage, QQuaternion
