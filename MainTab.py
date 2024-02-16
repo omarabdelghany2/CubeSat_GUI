@@ -14,7 +14,7 @@ class Ui_Form(object):
     def setupUi(self, Form):
         
         #list of Ports for RX & TX combobox
-        Ports = ["COM1","COM2","COM3","COM4","COM5","COM6","COM7","COM8","COM9"]
+        Ports = ["COM1","COM2","COM3","COM4","COM5","COM6","COM7","COM8","COM9","/dev/cu.usbserial-1120","/dev/cu.usbserial-120"]
         #list of Values of Baud Rate
 
         values = [800,1200, 2400, 4800, 9600, 19200,38400, 57600, 115200,230400, 400000, 460800, 921600, 1000000, 2000000]
@@ -187,7 +187,7 @@ class Ui_Form(object):
     """) 
         self.gridLayout.addWidget(self.ReceivingWindow_textEdit, 5, 1, 1, 1)
         self.LOGO_label= QtWidgets.QLabel(parent=Form)
-        LOGO_file_path =  QPixmap("images\SwiftACT LOGO.png")
+        LOGO_file_path =  QPixmap("images/SwiftACT LOGO.png")
         self.LOGO_label.setPixmap(LOGO_file_path)
         self.LOGO_label.setMaximumSize(QtCore.QSize(600, 400))
         self.gridLayout.addWidget(self.LOGO_label,5,2,1,1)

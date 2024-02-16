@@ -1,5 +1,5 @@
 import os
-import sys
+import sys 
 from PyQt6.QtGui import QIcon, QPixmap
 from PyQt6.QtWidgets import QApplication, QMainWindow, QTabWidget, QWidget, QLabel
 from mergeDataWithGui import mergeDataWithGui
