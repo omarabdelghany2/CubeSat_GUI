@@ -17,11 +17,29 @@ class Ui_Form(object):
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.groupBox_Status = QtWidgets.QGroupBox(parent=Form)
         font = QtGui.QFont()
-        font.setPointSize(14)
+        font.setPointSize(18)
         font.setBold(True)
         font.setWeight(75)
         self.groupBox_Status.setFont(font)
         self.groupBox_Status.setObjectName("groupBox_Status")
+        self.groupBox_Status.setStyleSheet("""
+        QGroupBox {
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);
+                                                                                                
+        }
+        QLabel {
+            color: rgb(64, 224, 208);                            
+            padding: 2px; /* Add padding to simulate border */
+        }
+        QLineEdit {
+            background-color: #333333;                                        
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);   
+             border-radius: 10px;
+        }
+                                                        
+    """) 
         self.gridLayout = QtWidgets.QGridLayout(self.groupBox_Status)
         self.gridLayout.setObjectName("gridLayout")
         self.label_TxP = QtWidgets.QLabel(parent=self.groupBox_Status)
@@ -123,10 +141,32 @@ class Ui_Form(object):
         font.setWeight(75)
         self.groupBox_Pattern.setFont(font)
         self.groupBox_Pattern.setObjectName("groupBox_Pattern")
+        self.groupBox_Pattern.setStyleSheet("""
+        QGroupBox {
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);
+                                                                                                
+        }
+        QLabel {
+            color: rgb(64, 224, 208);                            
+            padding: 2px; /* Add padding to simulate border */
+        }
+        QLineEdit {
+            background-color: #333333;                                        
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);   
+             border-radius: 10px;
+        }
+        QGraphicsView{
+            background-color: #333333;                              
+        }
+                                                        
+    """) 
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.groupBox_Pattern)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.graphicsView_Pattern = QtWidgets.QGraphicsView(parent=self.groupBox_Pattern)
         self.graphicsView_Pattern.setObjectName("graphicsView_Pattern")
+        self.graphicsView_Pattern.setMaximumSize(QtCore.QSize(800, 800))
         self.horizontalLayout.addWidget(self.graphicsView_Pattern)
         self.horizontalLayout_2.addWidget(self.groupBox_Pattern)
 

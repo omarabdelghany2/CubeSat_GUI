@@ -6,6 +6,7 @@ from PyQt6.QtGui import QImage, QQuaternion
 from OpenGL.GL import *
 from OpenGL.GLU import *
 from objloader import OBJ
+import os
 import numpy as np
 
 

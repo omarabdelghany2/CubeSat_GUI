@@ -28,6 +28,24 @@ class Ui_Form(object):
         self.gridLayout_3 = QtWidgets.QGridLayout(self.layoutWidget)
         self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_3.setObjectName("gridLayout_3")
+        self.groupbox_AV.setStyleSheet("""
+        QGroupBox {
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);
+                                                                                                
+        }
+        QLabel {
+            color: rgb(64, 224, 208);                            
+            padding: 2px; /* Add padding to simulate border */
+        }
+        QLineEdit {
+            background-color: #333333;                                        
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);   
+             border-radius: 10px;
+        }
+                                                        
+    """)  
         self.label_VBAT = QtWidgets.QLabel(parent=self.layoutWidget)
         font = QtGui.QFont()
         font.setPointSize(16)
@@ -72,6 +90,24 @@ class Ui_Form(object):
         font.setWeight(75)
         self.groupbox_SUB.setFont(font)
         self.groupbox_SUB.setObjectName("groupbox_SUB")
+        self.groupbox_SUB.setStyleSheet("""
+        QGroupBox {
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);
+                                                                                                
+        }
+        QLabel {
+            color: rgb(64, 224, 208);                            
+            padding: 2px; /* Add padding to simulate border */
+        }
+        QLineEdit {
+            background-color: #333333;                                        
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);   
+             border-radius: 10px;
+        }
+                                                        
+    """)  
         self.layoutWidget_2 = QtWidgets.QWidget(parent=self.groupbox_SUB)
         self.layoutWidget_2.setGeometry(QtCore.QRect(34, 50, 461, 311))
         self.layoutWidget_2.setObjectName("layoutWidget_2")
@@ -134,6 +170,24 @@ class Ui_Form(object):
         font.setWeight(75)
         self.groupBox_TEMP.setFont(font)
         self.groupBox_TEMP.setObjectName("groupBox_TEMP")
+        self.groupBox_TEMP.setStyleSheet("""
+        QGroupBox {
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);
+                                                                                                
+        }
+        QLabel {
+            color: rgb(64, 224, 208);                            
+            padding: 2px; /* Add padding to simulate border */
+        }
+        QLineEdit {
+            background-color: #333333;                                        
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);   
+             border-radius: 10px;
+        }
+                                                        
+    """)  
         self.lineEdit_HBAT = QtWidgets.QLineEdit(parent=self.groupBox_TEMP)
         self.lineEdit_HBAT.setGeometry(QtCore.QRect(190, 140, 113, 22))
         self.lineEdit_HBAT.setObjectName("lineEdit_HBAT")
@@ -166,6 +220,24 @@ class Ui_Form(object):
         font.setWeight(75)
         self.groupbox_SOLAR.setFont(font)
         self.groupbox_SOLAR.setObjectName("groupbox_SOLAR")
+        self.groupbox_SOLAR.setStyleSheet("""
+        QGroupBox {
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);
+                                                                                                
+        }
+        QLabel {
+            color: rgb(64, 224, 208);                            
+            padding: 2px; /* Add padding to simulate border */
+        }
+        QLineEdit {
+            background-color: #333333;                                        
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);   
+             border-radius: 10px;
+        }
+                                                        
+    """)  
         self.layoutWidget_3 = QtWidgets.QWidget(parent=self.groupbox_SOLAR)
         self.layoutWidget_3.setGeometry(QtCore.QRect(34, 50, 551, 311))
         self.layoutWidget_3.setObjectName("layoutWidget_3")
@@ -228,6 +300,24 @@ class Ui_Form(object):
         font.setWeight(75)
         self.groupBox_MOTORS.setFont(font)
         self.groupBox_MOTORS.setObjectName("groupBox_MOTORS")
+        self.groupBox_MOTORS.setStyleSheet("""
+        QGroupBox {
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);
+                                                                                                
+        }
+        QLabel {
+            color: rgb(64, 224, 208);                            
+            padding: 2px; /* Add padding to simulate border */
+        }
+        QLineEdit {
+            background-color: #333333;                                        
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);   
+             border-radius: 10px;
+        }
+                                                        
+    """)  
         self.layoutWidget_4 = QtWidgets.QWidget(parent=self.groupBox_MOTORS)
         self.layoutWidget_4.setGeometry(QtCore.QRect(34, 50, 451, 311))
         self.layoutWidget_4.setObjectName("layoutWidget_4")
@@ -278,24 +368,24 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.groupbox_AV.setTitle(_translate("Form", "Currents and Volts Statues"))
+        self.groupbox_AV.setTitle(_translate("Form", "Currents and Volts Status"))
         self.label_VBAT.setText(_translate("Form", "Vbat"))
         self.label_C33.setText(_translate("Form", "Current3.3"))
         self.label_C5.setText(_translate("Form", "Current5"))
-        self.groupbox_SUB.setTitle(_translate("Form", "Subsystems Statues"))
+        self.groupbox_SUB.setTitle(_translate("Form", "Subsystems Status"))
         self.label_OBC.setText(_translate("Form", "OBC"))
         self.label_COMM.setText(_translate("Form", "COMM"))
         self.label_ADCS.setText(_translate("Form", "ADCS"))
         self.label_PAYLOAD.setText(_translate("Form", "Payload"))
-        self.groupBox_TEMP.setTitle(_translate("Form", "Temp Statues"))
+        self.groupBox_TEMP.setTitle(_translate("Form", "Temp Status"))
         self.label_HBAT.setText(_translate("Form", "Bat Heater"))
         self.label_EPST.setText(_translate("Form", "EPS Temp"))
-        self.groupbox_SOLAR.setTitle(_translate("Form", "Solar Systems Statues"))
+        self.groupbox_SOLAR.setTitle(_translate("Form", "Solar Systems Status"))
         self.label_SOLAR1.setText(_translate("Form", "Solar 1"))
         self.label_SOLAR2.setText(_translate("Form", "Solar 2"))
         self.label_SOLAR3.setText(_translate("Form", "Solar 3"))
         self.label_SOLAR4.setText(_translate("Form", "Solar 4"))
-        self.groupBox_MOTORS.setTitle(_translate("Form", "Motors Systems Statues"))
+        self.groupBox_MOTORS.setTitle(_translate("Form", "Motors Systems Status"))
         self.label_MOTX.setText(_translate("Form", "Motor X"))
         self.label_MOTY.setText(_translate("Form", "Motor Y"))
         self.label_MOTZ.setText(_translate("Form", "Motor Z"))

@@ -24,6 +24,24 @@ class Ui_Form(object):
         font.setWeight(75)
         self.groupbox_Accelerometer.setFont(font)
         self.groupbox_Accelerometer.setObjectName("groupbox_Accelerometer")
+        self.groupbox_Accelerometer.setStyleSheet("""
+        QGroupBox {
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);
+                                                                                                
+        }
+        QLabel {
+            color: rgb(64, 224, 208);                            
+            padding: 2px; /* Add padding to simulate border */
+        }
+        QLineEdit {
+            background-color: #333333;                                        
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);   
+             border-radius: 10px;
+        }
+                                                        
+    """) 
         self.layoutWidget_2 = QtWidgets.QWidget(parent=self.groupbox_Accelerometer)
         self.layoutWidget_2.setGeometry(QtCore.QRect(14, 50, 391, 211))
         self.layoutWidget_2.setObjectName("layoutWidget_2")
@@ -74,6 +92,24 @@ class Ui_Form(object):
         font.setWeight(75)
         self.groupbox_LDRs.setFont(font)
         self.groupbox_LDRs.setObjectName("groupbox_LDRs")
+        self.groupbox_LDRs.setStyleSheet("""
+        QGroupBox {
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);
+                                                                                                
+        }
+        QLabel {
+            color: rgb(64, 224, 208);                            
+            padding: 2px; /* Add padding to simulate border */
+        }
+        QLineEdit {
+            background-color: #333333;                                        
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);   
+             border-radius: 10px;
+        }
+                                                        
+    """) 
         self.widget = QtWidgets.QWidget(parent=self.groupbox_LDRs)
         self.widget.setGeometry(QtCore.QRect(10, 50, 425, 199))
         self.widget.setObjectName("widget")
@@ -148,6 +184,24 @@ class Ui_Form(object):
         font.setWeight(75)
         self.groupbox_gyro_sensor.setFont(font)
         self.groupbox_gyro_sensor.setObjectName("groupbox_gyro_sensor")
+        self.groupbox_gyro_sensor.setStyleSheet("""
+        QGroupBox {
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);
+                                                                                                
+        }
+        QLabel {
+            color: rgb(64, 224, 208);                            
+            padding: 2px; /* Add padding to simulate border */
+        }
+        QLineEdit {
+            background-color: #333333;                                        
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);   
+             border-radius: 10px;
+        }
+                                                        
+    """) 
         self.layoutWidget_3 = QtWidgets.QWidget(parent=self.groupbox_gyro_sensor)
         self.layoutWidget_3.setGeometry(QtCore.QRect(14, 50, 391, 211))
         self.layoutWidget_3.setObjectName("layoutWidget_3")
@@ -201,6 +255,24 @@ class Ui_Form(object):
         font.setWeight(75)
         self.groupbox_Magnetometer.setFont(font)
         self.groupbox_Magnetometer.setObjectName("groupbox_Magnetometer")
+        self.groupbox_Magnetometer.setStyleSheet("""
+        QGroupBox {
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);
+                                                                                                
+        }
+        QLabel {
+            color: rgb(64, 224, 208);                            
+            padding: 2px; /* Add padding to simulate border */
+        }
+        QLineEdit {
+            background-color: #333333;                                        
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);   
+             border-radius: 10px;
+        }
+                                                        
+    """) 
         self.layoutWidget_4 = QtWidgets.QWidget(parent=self.groupbox_Magnetometer)
         self.layoutWidget_4.setGeometry(QtCore.QRect(14, 50, 391, 211))
         self.layoutWidget_4.setObjectName("layoutWidget_4")
@@ -251,6 +323,24 @@ class Ui_Form(object):
         font.setWeight(75)
         self.groupbox_ADCS.setFont(font)
         self.groupbox_ADCS.setObjectName("groupbox_ADCS")
+        self.groupbox_ADCS.setStyleSheet("""
+        QGroupBox {
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);
+                                                                                                
+        }
+        QLabel {
+            color: rgb(64, 224, 208);                            
+            padding: 2px; /* Add padding to simulate border */
+        }
+        QLineEdit {
+            background-color: #333333;                                        
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);   
+             border-radius: 10px;
+        }
+                                                        
+    """)
         self.layoutWidget_5 = QtWidgets.QWidget(parent=self.groupbox_ADCS)
         self.layoutWidget_5.setGeometry(QtCore.QRect(14, 50, 391, 211))
         self.layoutWidget_5.setObjectName("layoutWidget_5")
@@ -277,6 +367,24 @@ class Ui_Form(object):
         font.setWeight(75)
         self.groupbox_Kalman.setFont(font)
         self.groupbox_Kalman.setObjectName("groupbox_Kalman")
+        self.groupbox_Kalman.setStyleSheet("""
+        QGroupBox {
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);
+                                                                                                
+        }
+        QLabel {
+            color: rgb(64, 224, 208);                            
+            padding: 2px; /* Add padding to simulate border */
+        }
+        QLineEdit {
+            background-color: #333333;                                        
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);   
+             border-radius: 10px;
+        }
+                                                        
+    """) 
         self.layoutWidget_6 = QtWidgets.QWidget(parent=self.groupbox_Kalman)
         self.layoutWidget_6.setGeometry(QtCore.QRect(14, 50, 391, 211))
         self.layoutWidget_6.setObjectName("layoutWidget_6")
@@ -327,6 +435,24 @@ class Ui_Form(object):
         font.setWeight(75)
         self.groupbox_Satelites.setFont(font)
         self.groupbox_Satelites.setObjectName("groupbox_Satelites")
+        self.groupbox_Satelites.setStyleSheet("""
+        QGroupBox {
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);
+                                                                                                
+        }
+        QLabel {
+            color: rgb(64, 224, 208);                            
+            padding: 2px; /* Add padding to simulate border */
+        }
+        QLineEdit {
+            background-color: #333333;                                        
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);   
+             border-radius: 10px;
+        }
+                                                        
+    """) 
         self.layoutWidget_9 = QtWidgets.QWidget(parent=self.groupbox_Satelites)
         self.layoutWidget_9.setGeometry(QtCore.QRect(14, 50, 621, 211))
         self.layoutWidget_9.setObjectName("layoutWidget_9")
@@ -365,6 +491,24 @@ class Ui_Form(object):
         font.setWeight(75)
         self.groupbox_Position.setFont(font)
         self.groupbox_Position.setObjectName("groupbox_Position")
+        self.groupbox_Position.setStyleSheet("""
+        QGroupBox {
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);
+                                                                                                
+        }
+        QLabel {
+            color: rgb(64, 224, 208);                            
+            padding: 2px; /* Add padding to simulate border */
+        }
+        QLineEdit {
+            background-color: #333333;                                        
+            color: rgb(64, 224, 208);
+            border: 2px solid rgb(64, 224, 208);   
+             border-radius: 10px;
+        }
+                                                        
+    """) 
         self.layoutWidget_8 = QtWidgets.QWidget(parent=self.groupbox_Position)
         self.layoutWidget_8.setGeometry(QtCore.QRect(14, 50, 621, 211))
         self.layoutWidget_8.setObjectName("layoutWidget_8")
