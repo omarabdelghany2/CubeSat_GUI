@@ -1,0 +1,33 @@
+import base64
+import os
+import serial
+
+ser = serial.Serial('COM5', 115200)  # Change '/dev/ttyUSB0' to your Arduino port
+# Read bytes until newline character is encountered
+received_bytes = ser.readline().strip()
+# Do something with the received bytes
+print(received_bytes)  # Convert bytes to string for printing
+ser.close()
+
+# Encode image to base64 string
+def encode_image(image_path):
+    with open(image_path, 'rb') as f:
+        image_bytes = f.read()
+        return base64.b64encode(image_bytes)
+
+# Decode base64 string to image
+def decode_image(encoded_image):
+    image_bytes = base64.b64decode(encoded_image)
+    return image_bytes
+
+# Example usage
+image_path = os.path.join("sent.jpg")
+encoded_image = encode_image(image_path)
+print(encoded_image)
+decoded_image_bytes = decode_image(encoded_image)
+decoded_image_bytes_serial = decode_image(received_bytes)
+# Save the decoded image to a new file
+with open('decoded_imageeee.jpg', 'wb') as f:
+    f.write(decoded_image_bytes)
+
+

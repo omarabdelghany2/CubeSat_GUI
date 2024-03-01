@@ -25,11 +25,14 @@ class MainWindow(QMainWindow):
         self.eps_tab = self.CubeSat.Styling_EpsTab_Object
         self.adcs_tab = self.CubeSat.Styling_AdcsTab_Object
         self.comm_tab = self.CubeSat.Styling_CommTab_Object
+        self.PayTab = self.CubeSat.Styling_PayTab_Object
 
         self.tabs.addTab(self.main_tab, "MainWindow_tab")
         self.tabs.addTab(self.eps_tab, "EPS_tab")
         self.tabs.addTab(self.adcs_tab, "ADCS_tab")
         self.tabs.addTab(self.comm_tab, "COMM_tab")
+        self.tabs.addTab(self.PayTab, "Pay_Tab")
+
         self.tabs.setStyleSheet("""
         QTabWidget::pane {
             border: 2px solid rgb(64, 224, 208); /* Border around the entire QTabWidget */
@@ -66,7 +69,12 @@ class MainWindow(QMainWindow):
             self.eps_tab.hide()
             self.main_tab.hide()
             self.adcs_tab.hide()
-
+        elif index == 4:
+            self.PayTab.show()
+            self.eps_tab.hide()
+            self.main_tab.hide()
+            self.adcs_tab.hide()
+            self.comm_tab.hide()
 
 def main():
     app = QApplication(sys.argv)

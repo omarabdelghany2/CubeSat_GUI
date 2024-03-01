@@ -33,7 +33,10 @@ class GLWidget(QOpenGLWidget):
         self.load_obj()
 
     def load_obj(self):
-        obj = OBJ('chibi.obj', swapyz=False)
+        obj_file_path = os.path.join(os.path.dirname(__file__),"chibi.obj")
+        obj=OBJ(obj_file_path,swapyz=False)
+
+        # obj = OBJ('chibi.obj', swapyz=False)
         self.vertices = obj.vertices
         self.normals = obj.normals
         self.texcoords = obj.texcoords

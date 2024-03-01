@@ -14,10 +14,10 @@ class Ui_Form(object):
     def setupUi(self, Form):
         
         #list of Ports for RX & TX combobox
-        Ports = ["COM1","COM2","COM3","COM4","COM5","COM6","COM7","COM8","COM9","/dev/cu.usbserial-1120","/dev/cu.usbserial-120"]
+        Ports = ["COM5","COM2","COM3","COM4","COM1","COM6","COM7","COM8","COM9","/dev/cu.usbserial-1120","/dev/cu.usbserial-120"]
         #list of Values of Baud Rate
 
-        values = [800,1200, 2400, 4800, 9600, 19200,38400, 57600, 115200,230400, 400000, 460800, 921600, 1000000, 2000000]
+        values = [115200,1200, 2400, 4800, 9600, 19200,38400, 57600,800 ,230400, 400000, 460800, 921600, 1000000, 2000000]
         
         Form.setObjectName("Form")
         Form.resize(1250, 910)

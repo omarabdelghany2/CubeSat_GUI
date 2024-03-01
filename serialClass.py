@@ -3,18 +3,24 @@ import time
 import threading
 from PyQt6 import QtWidgets
 from PyQt6 import QtCore 
+from PyQt6.QtGui import QPixmap
+from PyQt6.QtCore import QTimer
 
 
 class SerialClass(QtCore.QThread):
     #variables used for recieving and transimitting over serial
     baudRateTx = 1
     Ser_Flag = 0
-    MergeEvent = threading.Event()
+    Image_Flag = 0
+    EncodedImage_Bytes = b''
+    capture_event = None
+    MergeEvent = None
+    timer = QTimer()
     baudRateRx=0
     comPortTx=""
     comPortRx=""
-    
-    #variables used for main battery status
+    response = b''
+  #variables used for main battery status
     voltage=0.0
     current=0.0
     current3_3=0.0
@@ -90,18 +96,22 @@ class SerialClass(QtCore.QThread):
     def __init__(self): # Initialise with serial port details
         QtCore.QThread.__init__(self)
         self.running = True
-         
+    
     def run(self):          
                         # Run serial reader thread
         try:
-            self.ser = serial.Serial(self.comPortRx, self.baudRateRx, timeout = 10)
+            if self.MergeEvent:
+                self.ser = serial.Serial(self.comPortRx, self.baudRateRx, timeout = 1)
+            else:
+                self.ser = serial.Serial(self.comPortTx, self.baudRateTx, timeout = 1)
             self.ser.flushInput()
 
             if not self.ser:
                 print("Can't open port")
                 self.running = False
             while self.running:
-                i=0
+              i=0
+              if(self.MergeEvent and (not(self.capture_event)) ) :
                 # Flush Input and Ouptut Buffers
                 self.ser.flushInput()
                 self.ser.flushOutput()
@@ -112,69 +122,106 @@ class SerialClass(QtCore.QThread):
 
                 self.received_data = self.serial_data.split(',')
                 # print(self.received_data)
-                if(len(self.received_data) > 45) :
-                            self.received_data = self.serial_data.split(',')
+                if(len(self.received_data) > 40) :
 
                             # Assigning values to variables
-                            Time = int(self.received_data[0])
-                            voltage = float(self.received_data[1])
-                            current = int(self.received_data[2])
-                            current3_3 = int(self.received_data[3])
-                            current_5 = int(self.received_data[4])
-                            Payload = int(self.received_data[5])
-                            OBC = int(self.received_data[6])
-                            ADCS = int(self.received_data[7])
-                            Temp = int(self.received_data[8])
-                            solar1 = int(self.received_data[9])
-                            solar2 = int(self.received_data[10])
-                            solar3 = int(self.received_data[11])
-                            solar4 = int(self.received_data[12])
-                            comm_antennas = int(self.received_data[13])
+                            # Assigning values to variables
+                            data = (self.received_data[i])
+                            i+=1
+                            Time = int(self.received_data[i])
+                            i+=1
+                            voltage = float(self.received_data[i])
+                            i+=1
+                            current = float(self.received_data[i])
+                            i+=1
+                            current3_3 = float(self.received_data[i])
+                            i+=1
+                            current_5 = float(self.received_data[i])
+                            i+=1
+                            Payload = int(self.received_data[i])
+                            i+=1
+                            OBC = int(self.received_data[i])
+                            i+=1
+                            ADCS = int(self.received_data[i])
+                            i+=1
+                            Temp = int(self.received_data[i])
+                            i+=1
+                            sttt = int(self.received_data[i])
+                            i+=1
+                            solar1 = int(self.received_data[i])
+                            i+=1
+                            solar2 = int(self.received_data[i])
+                            i+=1
+                            solar3 = int(self.received_data[i])
+                            i+=1
+                            solar4 = int(self.received_data[i])
+                            i+=1
+                            comm_antennas = int(self.received_data[i])
+                            i+=1
 
                             #-->EBS VARAIBLES
-                            BatteryHeater=int(self.received_data[14])
-                            EbsTemp=float(self.received_data[15])
+                            BatteryHeater=int(self.received_data[i])
+                            i+=1
+                            EbsTemp=float(self.received_data[i])
+                            i+=1
 
                             #-->ADCS VARAIBLES
 
-                            lux1 = int(self.received_data[16])
-                            lux2 = int(self.received_data[17])
-                            lux3 = int(self.received_data[18])
-                            lux4 = int(self.received_data[19])
-                            AccX = float(self.received_data[20])
-                            AccY = float(self.received_data[21])
-                            AccZ = float(self.received_data[22])
-                            GyroX = float(self.received_data[23])
-                            GyroY = float(self.received_data[24])
-                            GyroZ = float(self.received_data[25])
-                            MagnX = float(self.received_data[26])
-                            MagnY = float(self.received_data[27])
-                            MagnZ = float(self.received_data[28])
-                            ADSC_Temp = int(self.received_data[29])
-                            Kalmanx = float(self.received_data[30])
-                            KalmanY = float(self.received_data[31])
-                            KalmanZ = float(self.received_data[32])
-                            GPS_d3_Fix = int(self.received_data[33])
-                            Number_of_Satellites = int(self.received_data[34])
-                            Longitude = float(self.received_data[35])
-                            Latitude = float(self.received_data[36])
-                            Altitude = int(self.received_data[37])
+                            lux1 = int(self.received_data[i])
+                            i+=1
+                            lux2 = int(self.received_data[i])
+                            i+=1
+                            lux3 = int(self.received_data[i])
+                            i+=1
+                            lux4 = int(self.received_data[i])
+                            i+=1
+                            AccX = float(self.received_data[i])
+                            i+=1
+                            AccY = float(self.received_data[i])
+                            i+=1
+                            AccZ = float(self.received_data[i])
+                            i+=1
+                            GyroX = float(self.received_data[i])
+                            i+=1
+                            GyroY = float(self.received_data[i])
+                            i+=1
+                            GyroZ = float(self.received_data[i])
+                            i+=1
+                            MagnX = float(self.received_data[i])
+                            i+=1
+                            MagnY = float(self.received_data[i])
+                            i+=1
+                            MagnZ = float(self.received_data[i])
+                            i+=1
+                            ADSC_Temp = float(self.received_data[i])
+                            i+=1
+                            Kalmanx = float(self.received_data[i])
+                            i+=1
+                            KalmanY = float(self.received_data[i])
+                            i+=1
+                            KalmanZ = float(self.received_data[i])
+                            i+=1
+                            GPS_d3_Fix = float(self.received_data[i])
+                            i+=1
+
+                            Number_of_Satellites = float(self.received_data[i])
+                            i+=1
+
+                            Longitude = float(self.received_data[i])
+                            i+=1
+                            Latitude = float(self.received_data[i])
+                            i+=1
+                            Altitude = float(self.received_data[i])
+                            i+=1
 
 
                             #-->EBS VARAIBLES
                             
-                            MotorX=int(self.received_data[38])
-                            MotorY=int(self.received_data[39])
-                            MotorZ=int(self.received_data[40])
-
-                            #-->COMM VARAIBLES
-                            PowerTx =int(self.received_data[41])
-                            PowerRx =int(self.received_data[42])
-                            COMM_Status =int(self.received_data[43])
-                            ModulationScheme =str(self.received_data[44])
-                            Freq =int(self.received_data[45])
-                            FreqBand =int(self.received_data[46])
-                            DataRate =int(self.received_data[47])
+                            MotorX=int(self.received_data[i])
+                            i+=1
+                            MotorY=int(self.received_data[i])
+                            i+=1
+                            MotorZ=int(self.received_data[i])
 
 
                             # Assigning values to instance variables
@@ -223,21 +270,21 @@ class SerialClass(QtCore.QThread):
                             self.MotorX=MotorX
                             self.MotorY=MotorY
                             self.MotorZ=MotorZ
-
-
-                            self.PowerTx = PowerTx
-                            self.PowerRx = PowerRx
-                            self.COMM_Status = COMM_Status
-                            self.ModulationScheme = ModulationScheme
-                            self.Freq = Freq
-                            self.FreqBand = FreqBand
-                            self.DataRate = DataRate
-                            self.MergeEvent.set()     
-                            self.msleep(50)       
-                            
+    
+                            self.msleep(10)
+              else:
+                self.ser.cancel_read
+                self.ser.write(b'PIC')
+                while self.response == b'':
+                    self.response = self.ser.readline().strip()
+                self.EncodedImage_Bytes = self.response
+                print("Received Image data: {}".format(self.response)) 
+                self.response =b''                      
+              self.MergeEvent = True              
             if self.ser:                                    # Close serial port when thread finished
                 self.ser.close()
                 self.ser = None
         except serial.serialutil.SerialException:
             print("Port Exception")
+                
 

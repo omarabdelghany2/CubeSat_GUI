@@ -3,7 +3,9 @@ from Styling_MainTab import Styling_MainTab
 from Styling_EpsTab import Styling_EpsTab
 from Styling_AdcsTab import Styling_AdcsTab
 from Styling_CommTab import Styling_CommTab
+from Styling_PayTab import Styling_PayTab
 from PositionWindow import MapWindow
+import base64
 
 
 
@@ -21,22 +23,35 @@ class mergeDataWithGui (QtCore.QThread):
             self.Styling_EpsTab_Object=Styling_EpsTab()
             self.Styling_AdcsTab_Object=Styling_AdcsTab()
             self.Styling_CommTab_Object=Styling_CommTab()
-            
+            self.Styling_PayTab_Object=Styling_PayTab()
             self.PositionWindow_Object=MapWindow()
 
             self.Styling_MainTab_Object.Receiving_Connect_pushButton.clicked.connect(self.ReceiveHandler)
             self.Styling_MainTab_Object.Receiving_Disconnect_pushButton.clicked.connect(self.Disconnect)
-
+            self.Styling_PayTab_Object.pushButton_upload.clicked.connect(self.imaageRequest)
     def Connect(self):
             self.serialObject.baudRateRx = int(self.Styling_MainTab_Object.BaudRateRX_TextEdit.currentText())
             self.serialObject.comPortRx  = self.Styling_MainTab_Object.ReceivingComPort_comboBox.currentText()
+    def ConnectImage(self):
+            self.serialObject.baudRateTx = int(self.Styling_MainTab_Object.BaudRateTX_TextEdit.currentText())
+            self.serialObject.comPortTx  = self.Styling_PayTab_Object.comboBox_Port.currentText()
+
 
     def run(self):
           while self.running:
-              if(self.serialObject.MergeEvent.is_set()) :
+              if(self.serialObject.capture_event and (not(self.serialObject.MergeEvent)) ):       
+                     # put the image in gui ----->>
+                     image = base64.b64decode(self.serialObject.EncodedImage_Bytes)
+                     with open('decoded_imag_Serial.jpg', 'wb') as f:
+                            f.write(image)
+                     self.serialObject.capture_event = False
+                     self.serialObject.MergeEvent = True
+                     pixmap = QPixmap("decoded_imag_Serial.jpg")
+                     self.Styling_PayTab_Object.label_Photo.setPixmap(pixmap)
+              elif(self.serialObject.MergeEvent and (not(self.serialObject.capture_event)) ) :
                                    #1)#here merge data as the next line an example
               #first get the data from gui (baudrate ,comport)
-                     self.serialObject.MergeEvent.clear()
+                     self.serialObject.MergeEvent= False
                      self.Styling_MainTab_Object.ReceivingWindow_textEdit.setOverwriteMode(True)
                      self.Styling_MainTab_Object.ReceivingWindow_textEdit.overwriteMode()
                      # put the data in gui ----->>
@@ -150,87 +165,64 @@ class mergeDataWithGui (QtCore.QThread):
                      self.Styling_EpsTab_Object.lineEdit_EPST.setText(str(self.serialObject.EbsTemp))
 
                      if self.serialObject.solar1 == 1:
-                            self.Styling_EpsTab_Object.lineEdit_SOLAR1.setText(str("ON"))
                             self.Styling_EpsTab_Object.lineEdit_SOLAR1.setStyleSheet("background-color: green;")
                      else:
-                            self.Styling_EpsTab_Object.lineEdit_SOLAR1.setText(str("OFF"))
                             self.Styling_EpsTab_Object.lineEdit_SOLAR1.setStyleSheet("background-color: red;")
                      
                      if self.serialObject.solar2 == 1:
-                            self.Styling_EpsTab_Object.lineEdit_SOLAR2.setText(str("ON"))
                             self.Styling_EpsTab_Object.lineEdit_SOLAR2.setStyleSheet("background-color: green;")
                      else:
-                            self.Styling_EpsTab_Object.lineEdit_SOLAR2.setText(str("OFF"))
                             self.Styling_EpsTab_Object.lineEdit_SOLAR2.setStyleSheet("background-color: red;")
 
                      if self.serialObject.solar3 == 1:
-                            self.Styling_EpsTab_Object.lineEdit_SOLAR3.setText(str("ON"))
                             self.Styling_EpsTab_Object.lineEdit_SOLAR3.setStyleSheet("background-color: green;")
                      else:
-                            self.Styling_EpsTab_Object.lineEdit_SOLAR3.setText(str("OFF"))
                             self.Styling_EpsTab_Object.lineEdit_SOLAR3.setStyleSheet("background-color: red;")
 
                      if self.serialObject.solar4 == 1:
-                            self.Styling_EpsTab_Object.lineEdit_SOLAR4.setText(str("ON"))
                             self.Styling_EpsTab_Object.lineEdit_SOLAR4.setStyleSheet("background-color: green;")
                      else:
-                            self.Styling_EpsTab_Object.lineEdit_SOLAR4.setText(str("OFF"))
                             self.Styling_EpsTab_Object.lineEdit_SOLAR4.setStyleSheet("background-color: red;")
                      
                      if self.serialObject.OBC == 1:
-                            self.Styling_EpsTab_Object.lineEdit_OBC.setText(str("ON"))
                             self.Styling_EpsTab_Object.lineEdit_OBC.setStyleSheet("background-color: green;")
                      else:
-                            self.Styling_EpsTab_Object.lineEdit_OBC.setText(str("OFF"))
                             self.Styling_EpsTab_Object.lineEdit_OBC.setStyleSheet("background-color: red;")
                      
                      if self.serialObject.comm_antennas == 1:
-                            self.Styling_EpsTab_Object.lineEdit_COMM.setText(str("ON"))
                             self.Styling_EpsTab_Object.lineEdit_COMM.setStyleSheet("background-color: green;")
                      else:
-                            self.Styling_EpsTab_Object.lineEdit_COMM.setText(str("OFF"))
                             self.Styling_EpsTab_Object.lineEdit_COMM.setStyleSheet("background-color: red;")
 
                      if self.serialObject.ADCS == 1:
-                            self.Styling_EpsTab_Object.lineEdit_ADCS.setText(str("ON"))
                             self.Styling_EpsTab_Object.lineEdit_ADCS.setStyleSheet("background-color: green;")
                      else:
-                            self.Styling_EpsTab_Object.lineEdit_ADCS.setText(str("OFF"))
+
                             self.Styling_EpsTab_Object.lineEdit_ADCS.setStyleSheet("background-color: red;")
 
                      if self.serialObject.Payload == 1:
-                            self.Styling_EpsTab_Object.lineEdit_PAYLOAD.setText(str("ON"))
                             self.Styling_EpsTab_Object.lineEdit_PAYLOAD.setStyleSheet("background-color: green;")
                      else:
-                            self.Styling_EpsTab_Object.lineEdit_PAYLOAD.setText(str("OFF"))
                             self.Styling_EpsTab_Object.lineEdit_PAYLOAD.setStyleSheet("background-color: red;")          
                             
                      if self.serialObject.MotorX == 1:
-                            self.Styling_EpsTab_Object.lineEdit_MOTZ.setText(str("ON"))
                             self.Styling_EpsTab_Object.lineEdit_MOTZ.setStyleSheet("background-color: green;")
                      else:
-                            self.Styling_EpsTab_Object.lineEdit_MOTZ.setText(str("OFF"))
                             self.Styling_EpsTab_Object.lineEdit_MOTZ.setStyleSheet("background-color: red;")
                      
                      if self.serialObject.MotorY == 1:
-                            self.Styling_EpsTab_Object.lineEdit_MOTY.setText(str("ON"))
                             self.Styling_EpsTab_Object.lineEdit_MOTY.setStyleSheet("background-color: green;")
                      else:
-                            self.Styling_EpsTab_Object.lineEdit_MOTY.setText(str("OFF"))
                             self.Styling_EpsTab_Object.lineEdit_MOTY.setStyleSheet("background-color: red;")
 
                      if self.serialObject.MotorZ == 1:
-                            self.Styling_EpsTab_Object.lineEdit_MOTX.setText(str("ON"))
                             self.Styling_EpsTab_Object.lineEdit_MOTX.setStyleSheet("background-color: green;")
                      else:
-                            self.Styling_EpsTab_Object.lineEdit_MOTX.setText(str("OFF"))
                             self.Styling_EpsTab_Object.lineEdit_MOTX.setStyleSheet("background-color: red;")
 
                      if self.serialObject.BatteryHeater == 1:
-                            self.Styling_EpsTab_Object.lineEdit_HBAT.setText(str("ON"))
                             self.Styling_EpsTab_Object.lineEdit_HBAT.setStyleSheet("background-color: green;")
                      else:
-                            self.Styling_EpsTab_Object.lineEdit_HBAT.setText(str("OFF"))
                             self.Styling_EpsTab_Object.lineEdit_HBAT.setStyleSheet("background-color: red;") 
 
 
@@ -311,10 +303,21 @@ class mergeDataWithGui (QtCore.QThread):
 #         msg_box.setText(message)
 #         msg_box.exec()
     
+    def imaageRequest(self):
+       self.ConnectImage()
+       self.serialObject.capture_event = True
+       self.serialObject.MergeEvent = False
+       self.serialObject.running = True
+       self.serialObject.start()
+
     def ReceiveHandler(self):
-           self.Connect()
-           self.serialObject.running = True
-           self.serialObject.start()
+       self.serialObject.capture_event = False
+       self.serialObject.MergeEvent = True
+       self.Connect()
+       self.serialObject.running = True
+       self.serialObject.start()
+
+
 
     def Disconnect(self) :
        print('Disconnect Pressed')
